@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS  For Recoupe by AKHIL</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --card-color: #fff;
+            --highlight: #ffeb3b;
+            --border: #ddd;
+        }
+
+        .dark-mode {
+            --primary-color: #6b8cae;
+            --secondary-color: #4a6fa5;
+            --text-color: #f0f0f0;
+            --bg-color: #1a1a1a;
+            --card-color: #2d2d2d;
+            --highlight: #ffc107;
+            --border: #444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .important {
+            background-color: var(--highlight);
+            color: #000;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .example {
+            background-color: rgba(74, 111, 165, 0.1);
+            border-left: 3px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: rgba(0,0,0,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .mcq-container {
+            margin-top: 2rem;
+        }
+
+        .mcq {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-color);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .mcq-question {
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+
+        .mcq-options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .mcq-options li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .mcq-options li:hover {
+            background-color: rgba(74, 111, 165, 0.1);
+        }
+
+        .mcq-answer {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background-color: rgba(0, 128, 0, 0.1);
+            border-left: 4px solid green;
+            border-radius: 0 4px 4px 0;
+            display: none;
+        }
+
+        .show-answer {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .show-answer:hover {
+            background-color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">OS MATERIAL BY AKHIL</div>
+        <nav>
+            <ul>
+                <li><a href="#synchronization">Synchronization</a></li>
+                <li><a href="#threads">Threads</a></li>
+                <li><a href="#deadlock">Deadlock</a></li>
+                <li><a href="#mcqs">MCQs</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+    </header>
+
+    <div class="container">
+        <h1>Operating System Concepts</h1>
+        <p>Study material for Synchronization, Threads, and Deadlock - Lovely Professional University</p>
+
+        <section id="synchronization">
+            <div class="card">
+                <h2>Synchronization</h2>
+                <p>Synchronization refers to the coordination of multiple processes or threads to ensure correct and predictable execution when accessing shared resources.</p>
+
+                <h3>Critical Section Problem</h3>
+                <p>A critical section is a code segment that accesses shared variables and must not be concurrently executed by more than one process/thread. The critical section problem involves designing a protocol that processes can use to coordinate their access to critical sections.</p>
+                
+                <p class="important">Solution requirements for critical section problem:</p>
+                <ol>
+                    <li><strong>Mutual Exclusion:</strong> Only one process can be in its critical section at a time</li>
+                    <li><strong>Progress:</strong> If no process is in its critical section, then only processes not in their remainder section can decide which enters next</li>
+                    <li><strong>Bounded Waiting:</strong> There must be a bound on the number of times other processes can enter their critical sections after a process has requested entry</li>
+                </ol>
+
+                <h3>Peterson's Solution</h3>
+                <p>A software-based solution for two processes that satisfies all three requirements:</p>
+                <div class="example">
+                    <pre>
+// For process Pi
+do {
+    flag[i] = true;
+    turn = j;
+    while (flag[j] && turn == j);
+    
+    // Critical Section
+    
+    flag[i] = false;
+    
+    // Remainder Section
+} while (true);</pre>
+                </div>
+
+                <h3>Synchronization Hardware</h3>
+                <p>Hardware solutions for synchronization:</p>
+                <ul>
+                    <li><strong>Memory Barriers:</strong> Ensure load and store operations complete in order</li>
+                    <li><strong>Test-and-Set:</strong> Atomic instruction that tests and modifies a memory location</li>
+                    <li><strong>Compare-and-Swap:</strong> Atomic instruction that compares and swaps memory content</li>
+                </ul>
+
+                <h3>Semaphores</h3>
+                <p>A semaphore is an integer variable that, apart from initialization, is accessed only through two atomic operations: <span class="code">wait()</span> and <span class="code">signal()</span>.</p>
+                
+                <div class="example">
+                    <pre>
+// Definition of wait()
+wait(S) {
+    while (S <= 0); // busy wait
+    S--;
+}
+
+// Definition of signal()
+signal(S) {
+    S++;
+}</pre>
+                </div>
+
+                <p class="important">Types of semaphores:</p>
+                <ul>
+                    <li><strong>Counting Semaphore:</strong> Integer value can range over an unrestricted domain</li>
+                    <li><strong>Binary Semaphore:</strong> Integer value can range only between 0 and 1</li>
+                </ul>
+
+                <h3>Classical Problems of Synchronization</h3>
+                <p>Several classic problems demonstrate various aspects of process synchronization:</p>
+                
+                <p><strong>1. Bounded-Buffer Problem:</strong> Also known as the producer-consumer problem, where producers insert items into a buffer and consumers remove them.</p>
+                
+                <p><strong>2. Readers-Writers Problem:</strong> A data set is shared among several concurrent processes where readers only read and writers can both read and write.</p>
+                
+                <p><strong>3. Dining Philosophers Problem:</strong> Five philosophers sit around a table with five chopsticks, alternating between thinking and eating.</p>
+            </div>
+        </section>
+
+        <section id="threads">
+            <div class="card">
+                <h2>Threads</h2>
+                <p>A thread is a basic unit of CPU utilization; it comprises a thread ID, a program counter, a register set, and a stack. Threads within a process share code section, data section, and OS resources.</p>
+
+                <h3>Benefits of Multithreading</h3>
+                <ul>
+                    <li><strong>Responsiveness:</strong> Allows a program to continue running even if part of it is blocked</li>
+                    <li><strong>Resource Sharing:</strong> Threads share memory and resources of their process</li>
+                    <li><strong>Economy:</strong> Creating threads is cheaper than creating processes</li>
+                    <li><strong>Scalability:</strong> Can take advantage of multiprocessor architectures</li>
+                </ul>
+
+                <h3>User Threads vs Kernel Threads</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>User Threads</th>
+                        <th>Kernel Threads</th>
+                    </tr>
+                    <tr>
+                        <td>Implementation</td>
+                        <td>Managed by user-level threads library</td>
+                        <td>Supported by OS kernel</td>
+                    </tr>
+                    <tr>
+                        <td>Creation/Management</td>
+                        <td>Fast (no system calls)</td>
+                        <td>Slow (requires system calls)</td>
+                    </tr>
+                    <tr>
+                        <td>Blocking</td>
+                        <td>If one thread blocks, all threads block</td>
+                        <td>If one thread blocks, others can run</td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td>POSIX Pthreads, Java threads</td>
+                        <td>Windows, Linux threads</td>
+                    </tr>
+                </table>
+
+                <h3>Multithreading Models</h3>
+                <p>There are three common ways to establish relationship between user and kernel threads:</p>
+                
+                <p><strong>1. Many-to-One Model:</strong> Maps many user-level threads to one kernel thread.</p>
+                <p><strong>2. One-to-One Model:</strong> Maps each user thread to a kernel thread.</p>
+                <p><strong>3. Many-to-Many Model:</strong> Multiplexes many user-level threads to a smaller or equal number of kernel threads.</p>
+
+                <h3>Thread Libraries</h3>
+                <p>Thread libraries provide programmers with an API for creating and managing threads:</p>
+                <ul>
+                    <li><strong>POSIX Pthreads:</strong> Standardized thread API for UNIX systems</li>
+                    <li><strong>Windows Threads:</strong> Thread API for Windows OS</li>
+                    <li><strong>Java Threads:</strong> Thread management through the Java language</li>
+                </ul>
+
+                <h3>Threading Issues</h3>
+                <p>Several issues arise with the use of threads:</p>
+                <ul>
+                    <li><strong>fork() and exec() System Calls:</strong> Behavior varies across systems when threads call these</li>
+                    <li><strong>Thread Cancellation:</strong> Terminating a thread before it has finished</li>
+                    <li><strong>Signal Handling:</strong> Which thread should receive signals sent to a process</li>
+                    <li><strong>Thread Pools:</strong> Creating a number of threads at process startup</li>
+                    <li><strong>Thread-Specific Data:</strong> Data that needs to be unique to each thread</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="deadlock">
+            <div class="card">
+                <h2>Deadlock</h2>
+                <p>A deadlock is a situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process.</p>
+
+                <h3>Necessary Conditions for Deadlock</h3>
+                <p class="important">All four conditions must hold simultaneously for a deadlock to occur:</p>
+                <ol>
+                    <li><strong>Mutual Exclusion:</strong> At least one resource must be held in a non-sharable mode</li>
+                    <li><strong>Hold and Wait:</strong> A process must be holding at least one resource and waiting for additional resources</li>
+                    <li><strong>No Preemption:</strong> Resources cannot be preempted; they must be released voluntarily</li>
+                    <li><strong>Circular Wait:</strong> A set of waiting processes must exist where each is waiting for a resource held by the next</li>
+                </ol>
+
+                <h3>Resource-Allocation Graph</h3>
+                <p>A directed graph used to visualize resource allocation and requests:</p>
+                <ul>
+                    <li><strong>Processes:</strong> Represented as circles</li>
+                    <li><strong>Resources:</strong> Represented as rectangles with dots indicating instances</li>
+                    <li><strong>Request Edge:</strong> Directed edge from process to resource</li>
+                    <li><strong>Assignment Edge:</strong> Directed edge from resource instance to process</li>
+                </ul>
+                <p>If the graph contains no cycles, then no deadlock exists. If there is a cycle, a deadlock may exist.</p>
+
+                <h3>Methods for Handling Deadlocks</h3>
+                <p>There are three principal approaches:</p>
+                <ol>
+                    <li><strong>Deadlock Prevention:</strong> Ensure that at least one of the necessary conditions cannot hold</li>
+                    <li><strong>Deadlock Avoidance:</strong> Requires additional information about how resources will be requested</li>
+                    <li><strong>Deadlock Detection and Recovery:</strong> Allow deadlocks to occur, detect them, and recover</li>
+                </ol>
+
+                <h3>Deadlock Prevention</h3>
+                <p>Attacking each of the four necessary conditions:</p>
+                <ul>
+                    <li><strong>Mutual Exclusion:</strong> Make resources sharable when possible</li>
+                    <li><strong>Hold and Wait:</strong> Require processes to request all resources before execution</li>
+                    <li><strong>No Preemption:</strong> If a process can't get a resource, release all held resources</li>
+                    <li><strong>Circular Wait:</strong> Impose a total ordering of resource types</li>
+                </ul>
+
+                <h3>Deadlock Avoidance</h3>
+                <p>Requires that the system has some additional a priori information available:</p>
+                <ul>
+                    <li><strong>Safe State:</strong> A state is safe if the system can allocate resources to each process in some order and still avoid a deadlock</li>
+                    <li><strong>Resource-Allocation Graph Algorithm:</strong> For single instances of each resource type</li>
+                    <li><strong>Banker's Algorithm:</strong> For multiple instances of each resource type</li>
+                </ul>
+
+                <h3>Banker's Algorithm</h3>
+                <p>Used to determine if a system is in a safe state:</p>
+                <ol>
+                    <li>Let Work and Finish be vectors of length m and n respectively</li>
+                    <li>Initialize Work = Available and Finish[i] = false for i = 0, 1, ..., n-1</li>
+                    <li>Find an index i such that both:
+                        <ul>
+                            <li>Finish[i] == false</li>
+                            <li>Need_i ≤ Work</li>
+                        </ul>
+                    </li>
+                    <li>If no such i exists, go to step 5</li>
+                    <li>Work = Work + Allocation_i</li>
+                    <li>Finish[i] = true</li>
+                    <li>Go to step 3</li>
+                    <li>If Finish[i] == true for all i, then the system is in a safe state</li>
+                </ol>
+
+                <h3>Deadlock Detection</h3>
+                <p>If neither avoidance nor prevention is implemented, deadlocks can occur and must be detected:</p>
+                <ul>
+                    <li><strong>Single Instance of Each Resource Type:</strong> Use a wait-for graph</li>
+                    <li><strong>Several Instances of a Resource Type:</strong> Use an algorithm similar to the Banker's algorithm</li>
+                </ul>
+
+                <h3>Recovery from Deadlock</h3>
+                <p>Once a deadlock is detected, the system must recover:</p>
+                <ul>
+                    <li><strong>Process Termination:</strong>
+                        <ul>
+                            <li>Abort all deadlocked processes</li>
+                            <li>Abort one process at a time until the deadlock cycle is eliminated</li>
+                        </ul>
+                    </li>
+                    <li><strong>Resource Preemption:</strong>
+                        <ul>
+                            <li>Select a victim - which resources to preempt</li>
+                            <li>Rollback - return the process to some safe state</li>
+                            <li>Starvation - ensure the same process is not always the victim</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="mcqs">
+            <h2>Multiple Choice Questions</h2>
+
+            <div class="mcq-container" id="sync-mcqs">
+                <h3>Synchronization MCQs</h3>
+                
+                <div class="mcq">
+                    <div class="mcq-question">1. What is the main purpose of process synchronization?</div>
+                    <ul class="mcq-options">
+                        <li>A) To increase the speed of process execution</li>
+                        <li>B) To coordinate access to shared resources among competing processes</li>
+                        <li>C) To reduce the memory usage of processes</li>
+                        <li>D) To prioritize certain processes over others</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) To coordinate access to shared resources among competing processes</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">2. Which of the following is NOT a requirement for a solution to the critical section problem?</div>
+                    <ul class="mcq-options">
+                        <li>A) Mutual Exclusion</li>
+                        <li>B) Progress</li>
+                        <li>C) Bounded Waiting</li>
+                        <li>D) Starvation</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Starvation</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">3. In Peterson's solution, the variable 'turn' is used to:</div>
+                    <ul class="mcq-options">
+                        <li>A) Indicate which process can enter its critical section next</li>
+                        <li>B) Count the number of processes waiting</li>
+                        <li>C) Store the process ID of the last process to enter the critical section</li>
+                        <li>D) Determine the priority of processes</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Indicate which process can enter its critical section next</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">4. A semaphore is a/an:</div>
+                    <ul class="mcq-options">
+                        <li>A) Integer variable</li>
+                        <li>B) Special kind of process</li>
+                        <li>C) Hardware device</li>
+                        <li>D) Shared memory location</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Integer variable</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">5. The dining philosophers problem illustrates:</div>
+                    <ul class="mcq-options">
+                        <li>A) Deadlock</li>
+                        <li>B) Starvation</li>
+                        <li>C) Both deadlock and starvation</li>
+                        <li>D) Neither deadlock nor starvation</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Both deadlock and starvation</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">6. Which of the following is a hardware solution for synchronization?</div>
+                    <ul class="mcq-options">
+                        <li>A) Semaphore</li>
+                        <li>B) Monitor</li>
+                        <li>C) Test-and-Set</li>
+                        <li>D) Peterson's solution</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Test-and-Set</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">7. In the producer-consumer problem, the producer must not produce when:</div>
+                    <ul class="mcq-options">
+                        <li>A) The buffer is empty</li>
+                        <li>B) The buffer is full</li>
+                        <li>C) The consumer is consuming</li>
+                        <li>D) The consumer is waiting</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) The buffer is full</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">8. A binary semaphore can take values:</div>
+                    <ul class="mcq-options">
+                        <li>A) 0 and 1 only</li>
+                        <li>B) Any integer value</li>
+                        <li>C) Any positive integer value</li>
+                        <li>D) Any negative or positive integer value</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) 0 and 1 only</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">9. The readers-writers problem allows:</div>
+                    <ul class="mcq-options">
+                        <li>A) Multiple readers to read simultaneously</li>
+                        <li>B) Multiple writers to write simultaneously</li>
+                        <li>C) Both readers and writers to access simultaneously</li>
+                        <li>D) None of the above</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Multiple readers to read simultaneously</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">10. Which of the following is NOT a classical synchronization problem?</div>
+                    <ul class="mcq-options">
+                        <li>A) Bounded-buffer problem</li>
+                        <li>B) Readers-writers problem</li>
+                        <li>C) Dining philosophers problem</li>
+                        <li>D) Page replacement problem</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Page replacement problem</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">11. The wait() operation on a semaphore:</div>
+                    <ul class="mcq-options">
+                        <li>A) Increments the semaphore value</li>
+                        <li>B) Decrements the semaphore value</li>
+                        <li>C) Does not change the semaphore value</li>
+                        <li>D) Sets the semaphore value to zero</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Decrements the semaphore value</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">12. A monitor is:</div>
+                    <ul class="mcq-options">
+                        <li>A) A hardware synchronization device</li>
+                        <li>B) A software construct that encapsulates shared data and procedures</li>
+                        <li>C) A type of semaphore</li>
+                        <li>D) A process scheduling algorithm</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) A software construct that encapsulates shared data and procedures</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">13. In the test-and-set instruction, if the lock was free, the instruction:</div>
+                    <ul class="mcq-options">
+                        <li>A) Returns false and sets the lock</li>
+                        <li>B) Returns true and sets the lock</li>
+                        <li>C) Returns false without changing the lock</li>
+                        <li>D) Returns true without changing the lock</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Returns true and sets the lock</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">14. The bounded waiting condition in the critical section problem ensures that:</div>
+                    <ul class="mcq-options">
+                        <li>A) No process waits indefinitely to enter its critical section</li>
+                        <li>B) Only one process can be in its critical section at a time</li>
+                        <li>C) Processes must request all resources at once</li>
+                        <li>D) Resources can be preempted</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) No process waits indefinitely to enter its critical section</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">15. Which of the following synchronization mechanisms is most likely to cause busy waiting?</div>
+                    <ul class="mcq-options">
+                        <li>A) Semaphore with blocking</li>
+                        <li>B) Monitor</li>
+                        <li>C) Spinlock</li>
+                        <li>D) Message passing</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Spinlock</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">16. In the producer-consumer problem, the consumer must not consume when:</div>
+                    <ul class="mcq-options">
+                        <li>A) The buffer is empty</li>
+                        <li>B) The buffer is full</li>
+                        <li>C) The producer is producing</li>
+                        <li>D) The producer is waiting</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) The buffer is empty</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">17. The signal() operation on a semaphore:</div>
+                    <ul class="mcq-options">
+                        <li>A) Increments the semaphore value</li>
+                        <li>B) Decrements the semaphore value</li>
+                        <li>C) Does not change the semaphore value</li>
+                        <li>D) Sets the semaphore value to one</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Increments the semaphore value</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">18. Which of the following is true about monitors?</div>
+                    <ul class="mcq-options">
+                        <li>A) Only one process can be active within a monitor at a time</li>
+                        <li>B) Multiple processes can be active within a monitor at a time</li>
+                        <li>C) Processes outside the monitor cannot access the monitor's variables</li>
+                        <li>D) Both A and C</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Both A and C</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">19. The compare-and-swap instruction compares:</div>
+                    <ul class="mcq-options">
+                        <li>A) The contents of a memory location with a given value</li>
+                        <li>B) The values in two different memory locations</li>
+                        <li>C) The values in two different registers</li>
+                        <li>D) The contents of a register with a memory location</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) The contents of a memory location with a given value</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">20. In the readers-writers problem, the first reader:</div>
+                    <ul class="mcq-options">
+                        <li>A) Must wait for any writers to finish</li>
+                        <li>B) Must acquire the write lock</li>
+                        <li>C) Must acquire the read lock</li>
+                        <li>D) Can proceed immediately if no writers are active</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Must acquire the write lock</div>
+                </div>
+            </div>
+
+            <div class="mcq-container" id="threads-mcqs">
+                <h3>Threads MCQs</h3>
+                
+                <div class="mcq">
+                    <div class="mcq-question">1. A thread is also known as:</div>
+                    <ul class="mcq-options">
+                        <li>A) Heavyweight process</li>
+                        <li>B) Lightweight process</li>
+                        <li>C) Child process</li>
+                        <li>D) Parent process</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Lightweight process</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">2. Which of the following is NOT shared among threads of the same process?</div>
+                    <ul class="mcq-options">
+                        <li>A) Code section</li>
+                        <li>B) Data section</li>
+                        <li>C) OS resources</li>
+                        <li>D) Register set</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Register set</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">3. The primary benefit of multithreading is:</div>
+                    <ul class="mcq-options">
+                        <li>A) Reduced memory usage</li>
+                        <li>B) Increased responsiveness</li>
+                        <li>C) Simpler programming model</li>
+                        <li>D) All of the above</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Increased responsiveness</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">4. In the many-to-one threading model:</div>
+                    <ul class="mcq-options">
+                        <li>A) Many user threads map to one kernel thread</li>
+                        <li>B) One user thread maps to one kernel thread</li>
+                        <li>C) Many user threads map to many kernel threads</li>
+                        <li>D) One user thread maps to many kernel threads</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Many user threads map to one kernel thread</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">5. Which of the following is a disadvantage of user-level threads?</div>
+                    <ul class="mcq-options">
+                        <li>A) If one thread blocks, all threads block</li>
+                        <li>B) They are too slow to create</li>
+                        <li>C) They cannot share memory</li>
+                        <li>D) They require special hardware support</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) If one thread blocks, all threads block</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">6. Pthreads refers to:</div>
+                    <ul class="mcq-options">
+                        <li>A) A Windows thread API</li>
+                        <li>B) A POSIX standard for threads</li>
+                        <li>C) A Java thread implementation</li>
+                        <li>D) A hardware threading technology</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) A POSIX standard for threads</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">7. The one-to-one threading model:</div>
+                    <ul class="mcq-options">
+                        <li>A) Maps each user thread to a kernel thread</li>
+                        <li>B) Maps many user threads to one kernel thread</li>
+                        <li>C) Maps one user thread to many kernel threads</li>
+                        <li>D) Does not use kernel threads at all</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Maps each user thread to a kernel thread</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">8. Which of the following operating systems uses the one-to-one threading model?</div>
+                    <ul class="mcq-options">
+                        <li>A) Windows</li>
+                        <li>B) Linux</li>
+                        <li>C) Both Windows and Linux</li>
+                        <li>D) Neither Windows nor Linux</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Both Windows and Linux</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">9. Thread cancellation refers to:</div>
+                    <ul class="mcq-options">
+                        <li>A) Terminating a thread before it has finished</li>
+                        <li>B) Preventing a thread from starting</li>
+                        <li>C) Moving a thread to a different process</li>
+                        <li>D) Changing a thread's priority</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Terminating a thread before it has finished</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">10. Which of the following is NOT a threading issue?</div>
+                    <ul class="mcq-options">
+                        <li>A) fork() and exec() system calls</li>
+                        <li>B) Signal handling</li>
+                        <li>C) Thread pools</li>
+                        <li>D) Page replacement</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Page replacement</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">11. A thread pool is:</div>
+                    <ul class="mcq-options">
+                        <li>A) A collection of worker threads created at startup</li>
+                        <li>B) A shared memory area for threads</li>
+                        <li>C) A scheduling algorithm for threads</li>
+                        <li>D) A synchronization mechanism for threads</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) A collection of worker threads created at startup</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">12. Thread-local storage is used for:</div>
+                    <ul class="mcq-options">
+                        <li>A) Data shared among all threads</li>
+                        <li>B) Data unique to each thread</li>
+                        <li>C) Data protected by mutexes</li>
+                        <li>D) Data accessed by kernel threads only</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Data unique to each thread</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">13. The many-to-many threading model:</div>
+                    <ul class="mcq-options">
+                        <li>A) Multiplexes many user-level threads to a smaller number of kernel threads</li>
+                        <li>B) Maps each user thread to its own kernel thread</li>
+                        <li>C) Maps all user threads to a single kernel thread</li>
+                        <li>D) Does not use kernel threads at all</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Multiplexes many user-level threads to a smaller number of kernel threads</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">14. Which of the following is an advantage of kernel-level threads?</div>
+                    <ul class="mcq-options">
+                        <li>A) If one thread blocks, others can still run</li>
+                        <li>B) They are faster to create than user-level threads</li>
+                        <li>C) They don't require kernel support</li>
+                        <li>D) They use less memory than user-level threads</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) If one thread blocks, others can still run</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">15. In a multithreaded process, when one thread calls fork():</div>
+                    <ul class="mcq-options">
+                        <li>A) Only the calling thread is duplicated</li>
+                        <li>B) All threads are duplicated</li>
+                        <li>C) No threads are duplicated</li>
+                        <li>D) Behavior depends on the operating system</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Behavior depends on the operating system</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">16. Which of the following is NOT a component of a thread?</div>
+                    <ul class="mcq-options">
+                        <li>A) Thread ID</li>
+                        <li>B) Program counter</li>
+                        <li>C) Register set</li>
+                        <li>D) File descriptor table</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) File descriptor table</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">17. The main disadvantage of the one-to-one threading model is:</div>
+                    <ul class="mcq-options">
+                        <li>A) Creating a user thread requires creating a kernel thread</li>
+                        <li>B) If one thread blocks, all threads block</li>
+                        <li>C) It cannot take advantage of multiple processors</li>
+                        <li>D) It requires special hardware support</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Creating a user thread requires creating a kernel thread</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">18. Which of the following is true about user-level threads?</div>
+                    <ul class="mcq-options">
+                        <li>A) The kernel is aware of them</li>
+                        <li>B) They are managed by the operating system</li>
+                        <li>C) They are faster to create than kernel-level threads</li>
+                        <li>D) Blocking one thread blocks all threads in the process</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) They are faster to create than kernel-level threads</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">19. In Java, threads are implemented as:</div>
+                    <ul class="mcq-options">
+                        <li>A) User-level threads</li>
+                        <li>B) Kernel-level threads</li>
+                        <li>C) Either user-level or kernel-level depending on the JVM</li>
+                        <li>D) Hybrid (many-to-many) threads</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Either user-level or kernel-level depending on the JVM</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">20. Which of the following is NOT a benefit of multithreading?</div>
+                    <ul class="mcq-options">
+                        <li>A) Responsiveness</li>
+                        <li>B) Resource sharing</li>
+                        <li>C) Economy</li>
+                        <li>D) Reduced memory usage</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Reduced memory usage</div>
+                </div>
+            </div>
+
+            <div class="mcq-container" id="deadlock-mcqs">
+                <h3>Deadlock MCQs</h3>
+                
+                <div class="mcq">
+                    <div class="mcq-question">1. A deadlock is a situation where:</div>
+                    <ul class="mcq-options">
+                        <li>A) A process is waiting for an event that will never occur</li>
+                        <li>B) A set of processes are blocked because each is holding a resource and waiting for another</li>
+                        <li>C) A process terminates unexpectedly</li>
+                        <li>D) The system runs out of memory</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) A set of processes are blocked because each is holding a resource and waiting for another</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">2. Which of the following is NOT a necessary condition for deadlock?</div>
+                    <ul class="mcq-options">
+                        <li>A) Mutual exclusion</li>
+                        <li>B) Hold and wait</li>
+                        <li>C) No preemption</li>
+                        <li>D) Starvation</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Starvation</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">3. The circular wait condition implies that:</div>
+                    <ul class="mcq-options">
+                        <li>A) Processes must request resources in a circular order</li>
+                        <li>B) There exists a set of waiting processes where each is waiting for a resource held by the next</li>
+                        <li>C) Resources must be released in the same order they were acquired</li>
+                        <li>D) All processes are waiting for the same resource</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) There exists a set of waiting processes where each is waiting for a resource held by the next</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">4. In a resource-allocation graph, a directed edge from a process to a resource indicates:</div>
+                    <ul class="mcq-options">
+                        <li>A) The process is holding the resource</li>
+                        <li>B) The process is requesting the resource</li>
+                        <li>C) The resource is allocated to the process</li>
+                        <li>D) The resource is available to the process</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) The process is requesting the resource</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">5. Deadlock prevention strategies aim to:</div>
+                    <ul class="mcq-options">
+                        <li>A) Ensure that at least one of the necessary conditions cannot hold</li>
+                        <li>B) Detect deadlocks after they occur and recover</li>
+                        <li>C) Avoid deadlocks by careful resource allocation</li>
+                        <li>D) Ignore deadlocks and let them resolve themselves</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Ensure that at least one of the necessary conditions cannot hold</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">6. The Banker's algorithm is used for:</div>
+                    <ul class="mcq-options">
+                        <li>A) Deadlock prevention</li>
+                        <li>B) Deadlock avoidance</li>
+                        <li>C) Deadlock detection</li>
+                        <li>D) Deadlock recovery</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) Deadlock avoidance</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">7. A system is in a safe state if:</div>
+                    <ul class="mcq-options">
+                        <li>A) There are no deadlocks</li>
+                        <li>B) The system can allocate resources to each process in some order and still avoid a deadlock</li>
+                        <li>C) All processes have all the resources they need</li>
+                        <li>D) No processes are waiting for resources</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) The system can allocate resources to each process in some order and still avoid a deadlock</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">8. Which of the following attacks the "hold and wait" condition to prevent deadlocks?</div>
+                    <ul class="mcq-options">
+                        <li>A) Require processes to request all resources before execution</li>
+                        <li>B) Allow resources to be preempted</li>
+                        <li>C) Make all resources shareable</li>
+                        <li>D) Impose an ordering on resource requests</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Require processes to request all resources before execution</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">9. In deadlock detection, a wait-for graph is used when:</div>
+                    <ul class="mcq-options">
+                        <li>A) There are multiple instances of each resource type</li>
+                        <li>B) There is only one instance of each resource type</li>
+                        <li>C) The system uses prevention techniques</li>
+                        <li>D) The system uses avoidance techniques</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: B) There is only one instance of each resource type</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">10. Which of the following is NOT a deadlock recovery technique?</div>
+                    <ul class="mcq-options">
+                        <li>A) Process termination</li>
+                        <li>B) Resource preemption</li>
+                        <li>C) Safe sequence</li>
+                        <li>D) Rollback</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Safe sequence</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">11. The resource preemption recovery method may lead to:</div>
+                    <ul class="mcq-options">
+                        <li>A) Starvation</li>
+                        <li>B) Priority inversion</li>
+                        <li>C) Both starvation and priority inversion</li>
+                        <li>D) Neither starvation nor priority inversion</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Starvation</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">12. Which deadlock handling method requires the least a priori information?</div>
+                    <ul class="mcq-options">
+                        <li>A) Prevention</li>
+                        <li>B) Avoidance</li>
+                        <li>C) Detection and recovery</li>
+                        <li>D) All require the same amount of information</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Prevention</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">13. In the Banker's algorithm, the Need matrix is calculated as:</div>
+                    <ul class="mcq-options">
+                        <li>A) Maximum - Allocation</li>
+                        <li>B) Allocation - Maximum</li>
+                        <li>C) Available - Maximum</li>
+                        <li>D) Maximum - Available</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Maximum - Allocation</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">14. Which of the following statements about deadlock is true?</div>
+                    <ul class="mcq-options">
+                        <li>A) Deadlocks can always be avoided with proper scheduling</li>
+                        <li>B) Deadlocks can occur only in systems with shared resources</li>
+                        <li>C) Deadlocks are more likely to occur as system utilization increases</li>
+                        <li>D) Deadlocks can be completely prevented in any system</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: C) Deadlocks are more likely to occur as system utilization increases</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">15. The ostrich algorithm for deadlocks refers to:</div>
+                    <ul class="mcq-options">
+                        <li>A) Ignoring the problem altogether</li>
+                        <li>B) A sophisticated detection and recovery mechanism</li>
+                        <li>C) A prevention technique based on resource ordering</li>
+                        <li>D) An avoidance algorithm similar to the Banker's algorithm</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) Ignoring the problem altogether</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">16. Which condition is attacked by imposing a total ordering of all resource types?</div>
+                    <ul class="mcq-options">
+                        <li>A) Mutual exclusion</li>
+                        <li>B) Hold and wait</li>
+                        <li>C) No preemption</li>
+                        <li>D) Circular wait</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Circular wait</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">17. In deadlock detection for multiple instances of resources, the algorithm is similar to:</div>
+                    <ul class="mcq-options">
+                        <li>A) The Banker's algorithm</li>
+                        <li>B) Peterson's algorithm</li>
+                        <li>C) The producer-consumer algorithm</li>
+                        <li>D) The readers-writers algorithm</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) The Banker's algorithm</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">18. Which of the following is NOT a method to handle deadlocks?</div>
+                    <ul class="mcq-options">
+                        <li>A) Prevention</li>
+                        <li>B) Avoidance</li>
+                        <li>C) Detection and recovery</li>
+                        <li>D) Prediction</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: D) Prediction</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">19. The main disadvantage of deadlock prevention is:</div>
+                    <ul class="mcq-options">
+                        <li>A) It leads to low device utilization</li>
+                        <li>B) It requires too much computation</li>
+                        <li>C) It cannot guarantee deadlocks won't occur</li>
+                        <li>D) It is too difficult to implement</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) It leads to low device utilization</div>
+                </div>
+
+                <div class="mcq">
+                    <div class="mcq-question">20. Which of the following is true about the Banker's algorithm?</div>
+                    <ul class="mcq-options">
+                        <li>A) It requires knowledge of future resource requests</li>
+                        <li>B) It is used primarily for deadlock prevention</li>
+                        <li>C) It is computationally inexpensive</li>
+                        <li>D) It guarantees maximum system throughput</li>
+                    </ul>
+                    <button class="show-answer">Show Answer</button>
+                    <div class="mcq-answer">Correct Answer: A) It requires knowledge of future resource requests</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; Operating System Study Material - Deloped by AKHIL</p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        // Show answer buttons
+        const showAnswerButtons = document.querySelectorAll('.show-answer');
+        showAnswerButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    button.textContent = 'Show Answer';
+                } else {
+                    answer.style.display = 'block';
+                    button.textContent = 'Hide Answer';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
